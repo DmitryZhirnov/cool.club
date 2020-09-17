@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'MessageController@index');
-Route::post('/send', 'MessageController@send')->middleware('check-message');
+Route::post('/send', 'MessageController@send')->middleware('check-message')->name('email.send');

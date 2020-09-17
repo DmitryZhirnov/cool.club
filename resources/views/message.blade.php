@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form method="POST" action="/send" class="message-form">
+    <form method="POST" action="{{route('email.send')}}" class="message-form">
         @csrf
         <label for="message_content" class="message-form__content-label">@lang('message-form.enter-message')</label>
         <textarea name="message_content" cols="30" rows="10" class="message-form__content">{{ old('message_content') }}</textarea>
