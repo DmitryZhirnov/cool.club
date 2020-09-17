@@ -37,6 +37,8 @@ class SendMail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->to)->send($this->mail);
+        //Mail::to($this->to)->send($this->mail);
+        // Иммитация отправки сообщения. Записываю тело сообщения в laravel.log
+        info($this->mail);
     }
 }

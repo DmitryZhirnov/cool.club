@@ -39,11 +39,8 @@ class MessageController extends Controller
             //Синхронная отправка email
             // Mail::to(config('mail.helpdeskmail'))->send($helpDeskMail);
 
-            //Добавляю в очередь отправку сообщения посредством job
-            // dispatch(new SendMail($helpDeskMail, config('mail.helpdeskmail')));
-
-            // Иммитация отправки сообщения. Записываю тело сообщения в laravel.log
-            info($helpDeskMail);
+            //Добавляю в очередь отправку сообщения
+            dispatch(new SendMail($helpDeskMail, config('mail.helpdeskmail')))->delay(10);
 
             return Redirect::back()->with(['success' => trans('message-form.success')]);
         } catch (\Exception $ex) {
