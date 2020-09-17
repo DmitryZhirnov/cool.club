@@ -39,10 +39,10 @@ class MessageController extends Controller
             // Иммитация отправки сообщения. Записываю тело сообщения в laravel.log
             info($helpDeskMail);
 
-            return Redirect::back()->with(['success' => 'Сообщение принято!']);
+            return Redirect::back()->with(['success' => trans('message-form.success')]);
         } catch (\Exception $ex) {
             info($ex);
-            return Redirect::back()->withErrors(['message_content' => 'Ошибка отправки сообщения!']);
+            return Redirect::back()->withErrors(['message_content' => trans('message-form.send_error')]);
         }
     }
 }

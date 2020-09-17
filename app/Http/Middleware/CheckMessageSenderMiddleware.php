@@ -29,7 +29,9 @@ class CheckMessageSenderMiddleware
 
         if ($message && $message->created_at > Carbon::now()->addMinutes(-$messageInterval)) {
             return Redirect::back()
-                ->withErrors(['message_content' => "Повторно сообщение можно отправить только через {$messageInterval} мин."]);
+                ->withErrors([
+                    'message_content' => trans('message-form.send_repeat_error', ['interval' => $messageInterval])
+                ]);
         }
 
         // Добавляю к $request отправителя сообщения
