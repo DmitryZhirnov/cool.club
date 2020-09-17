@@ -106,5 +106,8 @@ return [
             resource_path('views/vendor/mail'),
         ],
     ],
-
+    /**
+     * Интервал отправки email сообщений 
+     */
+    'interval' => 30,
 ];
