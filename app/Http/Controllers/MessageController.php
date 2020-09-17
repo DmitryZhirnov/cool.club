@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MessageRequest;
+use App\Mail\HelpDeskMail;
 use App\Models\Message;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 
@@ -27,13 +29,19 @@ class MessageController extends Controller
      * @param \App\Http\Requests\MessageRequest
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function send(MessageRequest $request)
+    public function send(MessageRequest $request, HelpDeskMail $helpDeskMail)
     {
         try {
             Message::create($request->all());
 
-            return Redirect::back()->with(['success' => 'Сообщение успешно отправлено!']);
+            //Отправляю сообщение
+            //Mail::to(config('mail.helpdeskmail'))->send($helpDeskMail);
+            // Иммитация отправки сообщения. Записываю тело сообщения в laravel.log
+            info($helpDeskMail);
+
+            return Redirect::back()->with(['success' => 'Сообщение принято!']);
         } catch (\Exception $ex) {
+            info($ex);
             return Redirect::back()->withErrors(['message_content' => 'Ошибка отправки сообщения!']);
         }
     }

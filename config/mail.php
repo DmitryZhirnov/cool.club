@@ -110,4 +110,8 @@ return [
      * Интервал отправки email сообщений 
      */
     'interval' => 30,
+    /**
+     * 
+     */
+    'helpdeskmail' => 'helpdesk@test.ru'
 ];

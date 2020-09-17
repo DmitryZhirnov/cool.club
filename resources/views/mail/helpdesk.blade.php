@@ -1,0 +1,1 @@
+<div>{{ $messageContent }}</div>
