@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MessageRequest;
+use App\Jobs\SendMail;
 use App\Mail\HelpDeskMail;
 use App\Models\Message;
 use Illuminate\Http\Response;
@@ -35,7 +36,11 @@ class MessageController extends Controller
             Message::create($request->all());
 
             //Отправляю сообщение
-            //Mail::to(config('mail.helpdeskmail'))->send($helpDeskMail);
+            // Mail::to(config('mail.helpdeskmail'))->send($helpDeskMail);
+
+            //Добавляю в очередь отправку сообщения посредством job
+            // dispatch(new SendMail($helpDeskMail, config('mail.helpdeskmail')));
+
             // Иммитация отправки сообщения. Записываю тело сообщения в laravel.log
             info($helpDeskMail);
 
