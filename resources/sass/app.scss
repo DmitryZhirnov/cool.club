@@ -1,1 +1,21 @@
 //
+.message-form {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3em;
+    width: 30em;
+    &__content {
+        margin: 1em 0;
+    }
+    &__submit {
+        margin-bottom: 1em;
+    }
+    &__errors {
+        color: red;
+    }
+    &__info {
+        color: green;
+    }
+}
