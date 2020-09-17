@@ -17,6 +17,9 @@
         @enderror
         <button type="submit">Отправить</button>
     </form>
+    @if (Session::has('success'))
+    <div class="alert alert-info">{{ Session::get('success') }}</div>
+    @endif
 </body>
 
 </html>

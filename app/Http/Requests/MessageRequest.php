@@ -4,6 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Класс валидации формы отправления сообщений по e-mail
+ */
 class MessageRequest extends FormRequest
 {
     /**
@@ -24,7 +27,8 @@ class MessageRequest extends FormRequest
     public function rules()
     {
         return [
-            'message_content' => "required|min:30|max:255"
+            'message_content' => "required|min:30|max:500",
+            'sender_id' => "required|min:10|max:10"
         ];
     }
 }
