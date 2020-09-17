@@ -18,6 +18,9 @@
 
 ## Установка
 
--   Клонируйте репозиторий
--   Выполните команду `php artisan migrate `
+-   Клонируйте репозиторий `git clone https://github.com/DmitryZhirnov/cool.club.git`
+-   Создайте БД на своем сервере MySql
+-   Настройте окружение .env для соединения с БД
+-   Выполните команду `php artisan key:generate`
+-   Выполните команду `php artisan migrate`
 -   Выполните команду `php artisan serve`
