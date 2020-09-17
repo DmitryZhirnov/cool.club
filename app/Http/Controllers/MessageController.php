@@ -8,6 +8,7 @@ use App\Mail\HelpDeskMail;
 use App\Models\Message;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
@@ -35,7 +36,7 @@ class MessageController extends Controller
         try {
             Message::create($request->all());
 
-            //Отправляю сообщение
+            //Синхронная отправка email
             // Mail::to(config('mail.helpdeskmail'))->send($helpDeskMail);
 
             //Добавляю в очередь отправку сообщения посредством job
@@ -46,7 +47,7 @@ class MessageController extends Controller
 
             return Redirect::back()->with(['success' => trans('message-form.success')]);
         } catch (\Exception $ex) {
-            info($ex);
+            Log::error($ex);
             return Redirect::back()->withErrors(['message_content' => trans('message-form.send_error')]);
         }
     }
